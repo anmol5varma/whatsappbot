@@ -1,0 +1,15 @@
+name: Trigger IPO Update
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # 6:00 UTC = 11:30 AM IST
+  workflow_dispatch:
+
+jobs:
+  call-netlify-function:
+    runs-on: ubuntu-latest
+    steps:
+      - name: HTTP request to Netlify Function
+        uses: wei/curl@v1
+        with:
+          args: -X GET https://lighthearted-halva-89e0cc.netlify.app/.netlify/functions/getIpos
