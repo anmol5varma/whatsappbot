@@ -9,17 +9,15 @@ const getIpoMessage = ipo => {
     return `*${ipo.name}*${isLastDay ? '\n🔴LAST DAY🔴' : ''}\nType: ${ipo.type}\nPrice: ${ipo.price}\nProfit: ${ipo.listing.split(' ')[1].slice(1, -1)}\n\n_Subscription details_\nQIB: ${ipo.qib}\nRII: ${ipo.rii}\nTotal: ${ipo.total}\nLast update: ${ipo.last_update}\n${ipo.link}`
 }
 
-const sendIpoInMessage = (ipo) => {
+const sendIpoInMessageFilter = (ipo) => {
     const rating = ipo.gmp === '--' ? 0 : 100 * ((+ipo.gmp) / (+ipo.price))
-    return ipo.status !== 'Upcoming' && rating > 10
+    return ipo.status !== 'Upcoming' && rating > 25
 }
 
 const getGoodIpos = async () => {
     const ipoDetails = await getIpos();
     
-    const goodIpos = ipoDetails.filter(ipo => {
-        return sendIpoInMessage(ipo)
-    })
+    const goodIpos = ipoDetails.filter(sendIpoInMessageFilter)
 
     const messages = goodIpos.map(getIpoMessage)
     const finalMessage = `**CURRENT EXCITING IPOs!!!**\nCurrent/Upcoming: ${ipoDetails.length}\n\n${messages.join('\n----------------------\n\n')}`
@@ -30,5 +28,6 @@ const getGoodIpos = async () => {
     console.log('Sent update');
 }
 
+export default getGoodIpos
 // Usage:
 // getGoodIpos()
