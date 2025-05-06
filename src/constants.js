@@ -1,1 +1,1 @@
-export const IPO_NUMBER = "8098469331"
+export const IPO_GROUP_ID = "120363418243099226@g.us"

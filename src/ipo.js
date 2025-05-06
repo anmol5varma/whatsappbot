@@ -1,6 +1,6 @@
 import getIpos from 'good-ipo'
 import { sendMessage } from './sendMessage.js';
-import { IPO_NUMBER } from './constants.js'
+import { IPO_GROUP_ID } from './constants.js'
 
 const getIpoMessage = ipo => {
     const currentDate = new Date();
@@ -27,7 +27,7 @@ const getGoodIpos = async () => {
 
     console.log('Triggering whatsapp message: ', messages?.length);
     if (messages.length)
-        await sendMessage(finalMessage, IPO_NUMBER)
+        await sendMessage(finalMessage, IPO_GROUP_ID)
 
     console.log('Sent update');
 }

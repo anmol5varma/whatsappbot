@@ -1,9 +1,9 @@
 import axios from 'axios';
 import 'dotenv/config'
 
-export const sendMessage = async (message, number) => {
+export const sendMessage = async (message, id) => {
     let data = JSON.stringify({
-        "chatId": `${number}@c.us`,
+        "chatId": id,
         "message": message,
         "linkPreview": false
     });
