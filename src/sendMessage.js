@@ -19,11 +19,9 @@ export const sendMessage = async (message, number) => {
     };
 
     try {
-        await axios.request(config)
+        const res = await axios.request(config)
+        console.log('idMessage: ', res.data?.idMessage);
     } catch (err) {
         console.log(err);
     }
 }
-
-
-"https://7105.api.greenapi.com/waInstance7105236685/sendMessage/f947c469f7f14c029ea28d4ebb8cff846f594ffbcf134df0a4"
