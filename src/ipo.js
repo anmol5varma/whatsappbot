@@ -27,11 +27,11 @@ const getGoodIpos = async () => {
 
     console.log('Triggering whatsapp message: ', messages?.length);
     if (messages.length)
-        sendMessage(finalMessage, IPO_NUMBER)
+        await sendMessage(finalMessage, IPO_NUMBER)
 
     console.log('Sent update');
 }
 
 export default getGoodIpos
 // Usage:
-// getGoodIpos()
+getGoodIpos()
