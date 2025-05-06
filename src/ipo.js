@@ -34,4 +34,4 @@ const getGoodIpos = async () => {
 
 export default getGoodIpos
 // Usage:
-getGoodIpos()
+// getGoodIpos()
