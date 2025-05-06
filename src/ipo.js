@@ -16,12 +16,16 @@ const sendIpoInMessageFilter = (ipo) => {
 
 const getGoodIpos = async () => {
     const ipoDetails = await getIpos();
+    console.log('Original length: ', ipoDetails?.length);
     
     const goodIpos = ipoDetails.filter(sendIpoInMessageFilter)
+    console.log('Filtered length: ', goodIpos?.length);
+    
 
     const messages = goodIpos.map(getIpoMessage)
     const finalMessage = `**CURRENT EXCITING IPOs!!!**\nCurrent/Upcoming: ${ipoDetails.length}\n\n${messages.join('\n----------------------\n\n')}`
 
+    console.log('Triggering whatsapp message: ', messages?.length);
     if (messages.length)
         sendMessage(finalMessage, IPO_NUMBER)
 
