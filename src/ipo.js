@@ -5,7 +5,7 @@ import { IPO_NUMBER } from './constants.js'
 const getIpoMessage = ipo => {
     const currentDate = new Date();
     const closingDate = new Date(ipo.close);
-    isLastDay = closingDate.getMonth() === currentDate.getMonth() && closingDate.getDate() - currentDate.getDate() < 1
+    const isLastDay = closingDate.getMonth() === currentDate.getMonth() && closingDate.getDate() - currentDate.getDate() < 1
     return `*${ipo.name}*${isLastDay ? '\n🔴LAST DAY🔴' : ''}\nType: ${ipo.type}\nPrice: ${ipo.price}\nProfit: ${ipo.listing.split(' ')[1].slice(1, -1)}\n\n_Subscription details_\nQIB: ${ipo.qib}\nRII: ${ipo.rii}\nTotal: ${ipo.total}\nLast update: ${ipo.last_update}\n${ipo.link}`
 }
 
