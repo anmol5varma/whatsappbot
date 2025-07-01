@@ -2,7 +2,7 @@ name: Trigger IPO Update
 
 on:
   schedule:
-    - cron: '25 4 * * *'   # 04:27 UTC = 9:55 AM IST
+    - cron: '47 1 * * *'   # 01:47 UTC = 7:17 AM IST
   workflow_dispatch:
 
 jobs:
