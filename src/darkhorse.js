@@ -5,7 +5,7 @@ import { IPO_GROUP_ID } from './constants.js'
 const getWhatsappMessage = (stock) => {
     if (!stock) return 'No stock data available';
     const { name, code, price_suggested, pe } = stock;
-    return `*${name}* - ${code}\n\n` +
+    return `🎠🎠🎠🎠🎠🎠\n*${name}* - ${code}\n\n` +
         `*Price suggested:* ₹${price_suggested}\n` +
         `*PE:* ${pe}\n` +
         `*report:* https://www.darkhorsestocks.in/`;
@@ -47,5 +47,4 @@ const getLatestRecommendation = async () => {
     console.log('Sent update');
 }
 
-getLatestRecommendation()
 export default getLatestRecommendation
