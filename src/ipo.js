@@ -6,7 +6,7 @@ const getIpoMessage = ipo => {
     const currentDate = new Date();
     const closingDate = new Date(ipo.close);
     const isLastDay = closingDate.getMonth() === currentDate.getMonth() && closingDate.getDate() === currentDate.getDate()
-    return `*${ipo.name}*${isLastDay ? '\n🔴LAST DAY🔴' : ''}\nType: ${ipo.type}\nPrice: ${ipo.price}\nProfit: ${ipo.listing.split(' ')[1].slice(1, -1)}\n\n_Subscription details_\nQIB: ${ipo.qib}\nRII: ${ipo.rii}\nTotal: ${ipo.total}\nLast update: ${ipo.last_update}\n${ipo.link}`
+    return `*${ipo.name}*${isLastDay ? '\n🔴LAST DAY🔴' : ''}\nType: ${ipo.type}\nPrice: ₹${ipo.price}\nGMP: ₹${ipo.gmp}\nProfit: ${ipo.listing.split(' ')[1].slice(1, -1)}\n\n_Subscription details_\nQIB: ${ipo.qib}\nRII: ${ipo.rii}\nTotal: ${ipo.total}\nLast update: ${ipo.last_update}\n${ipo.link}`
 }
 
 const sendIpoInMessageFilter = (ipo) => {
@@ -34,4 +34,4 @@ const getGoodIpos = async () => {
 
 export default getGoodIpos
 // Usage:
-// getGoodIpos()
+getGoodIpos()
