@@ -22,4 +22,7 @@ jobs:
         run: npm ci
 
       - name: Run script
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+          INSTANCE_ID: ${{ secrets.INSTANCE_ID }}
         run: node main.js

@@ -32,7 +32,6 @@ const getLatestRecommendation = async () => {
     const stocks = response?.data || []
     const latestStock = stocks[0]?.companyList[0]
     
-    console.log('Latest stock recommendation: ', latestStock);
     const message = getWhatsappMessage(latestStock);
     const suggestionDate = new Date(latestStock?.date);
     const currentDate = new Date();
