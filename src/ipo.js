@@ -12,10 +12,10 @@ const getIpoMessage = ipo => {
         [`₹${ipo.price}`, `₹${ipo.gmp}`, ipo.listing.split(' ')[1].slice(1, -1)]
     ])
     const subscriptionTable = createTextTable([
-        ['QIB', 'RII', 'Total'],
-        [ipo.qib, ipo.rii, ipo.total]
+        ['QIB', 'RII', 'NII'],
+        [ipo.qib, ipo.rii, ipo.nii]
     ])
-    finalMessage += `${priceTable}\n\n${subscriptionTable}\n\nCloses: ${ipo.close}\nLast update: ${ipo.last_update}\n${ipo.link}\n`
+    finalMessage += `${priceTable}\n\n${subscriptionTable}\n\nCloses: ${ipo.close}\n${ipo.link}\n`
     return finalMessage    
 }
 
@@ -29,11 +29,21 @@ const getGoodIpos = async () => {
     console.log('Original length: ', ipoDetails?.length);
 
     const goodIpos = ipoDetails.filter(sendIpoInMessageFilter)
+    if(goodIpos?.length === 0) {
+        console.log('No good IPOs found');
+        return;
+    }
     console.log('Filtered length: ', goodIpos?.length);
+    const lastUpdated = goodIpos.reduce((acc, ipo) => {
+        if (new Date(acc)< new Date(ipo?.last_update)) {
+            return ipo?.last_update
+        }
+        return acc
+    }, goodIpos[0])
 
 
     const messages = goodIpos.map(getIpoMessage)
-    const finalMessage = `💹💹💹💹💹💹\n*OPEN IPOs!!!*\nCurrent/Upcoming: ${ipoDetails.length}\n\n${messages.join('__________________________________\n\n')}`
+    const finalMessage = `💹💹💹💹💹💹\n*OPEN IPOs!!!*\nCurrent/Upcoming: ${ipoDetails.length}\nLast updated: ${lastUpdated}\n\n${messages.join('__________________________________\n\n')}`
 
     console.log('Triggering whatsapp message: ', messages?.length);
     if (messages.length)
